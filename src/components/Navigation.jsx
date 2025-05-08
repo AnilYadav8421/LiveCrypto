@@ -25,7 +25,7 @@ const Navigation = () => {
             }>
                 Saved
             </NavLink>
-            
+
         </nav>
     )
 }
