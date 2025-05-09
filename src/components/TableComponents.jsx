@@ -3,7 +3,7 @@ import { CryptoContext } from '../context/CryptoContext';
 import star from '../assets/star.svg';
 
 const TableComponents = () => {
-    const { cryptoData } = useContext(CryptoContext);
+    const { cryptoData, currency } = useContext(CryptoContext);
 
     if (!cryptoData || cryptoData.length === 0) {
         return <p>No crypto data available</p>;
@@ -35,7 +35,7 @@ const TableComponents = () => {
                             <td className="py-3">{
                                 new Intl.NumberFormat("en-IN", {
                                     style: "currency",
-                                    currency: "inr"
+                                    currency: currency
                                 }).format(data.current_price || 0)
                             }</td>
                             <td className="py-3">{data.total_volume?.toLocaleString() || "N/A"}</td>

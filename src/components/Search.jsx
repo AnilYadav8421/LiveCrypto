@@ -6,8 +6,8 @@ import { data } from 'react-router-dom';
 
 const SearchInput = ({ handleSearch }) => {
     const [searchText, setSearchText] = useState("");
-    let {searchData} = useContext(CryptoContext);
-    let {coinSearch, setCoinSearch, setSearchData} = useContext(CryptoContext);
+    let { searchData } = useContext(CryptoContext);
+    let { coinSearch, setCoinSearch, setSearchData } = useContext(CryptoContext);
 
 
     let handleInput = (e) => {
@@ -40,13 +40,15 @@ const SearchInput = ({ handleSearch }) => {
                 searchText.length > 0 ?
                     <ul className='absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-2 bg-gray-600 bg-opacity-70 backdrop-blur-md'>
                         {
-                            false ? searchData.map(coin =>{return <li className='flex items-center ml-4 my-2 cursor-pointer'
-                            key={coin.id}
-                            onClick={()=> selectCoin(coin.id)}>
-                                <img className='w-[1rem] h-[1rem] mx-1.5' src={coin.thumb} alt="coin.thumb" />
-                                <span>{coin.name}</span>
-                            </li> }) : <div className='w-full h-full flex justify-center items-center'>
-                                <div className='w-8 h-8 border-4 border-cyan-300 rounded-full border-b-gray-600 animate-spin' role='status'/>
+                            searchData ? searchData.map(coin => {
+                                return <li className='flex items-center ml-4 my-2 cursor-pointer'
+                                    key={coin.id}
+                                    onClick={() => selectCoin(coin.id)}>
+                                    <img className='w-[1rem] h-[1rem] mx-1.5' src={coin.thumb} alt="coin.thumb" />
+                                    <span>{coin.name}</span>
+                                </li>
+                            }) : <div className='w-full h-full flex justify-center items-center'>
+                                <div className='w-8 h-8 border-4 border-cyan-300 rounded-full border-b-gray-600 animate-spin' role='status' />
                                 <span className='ml-2'>Searching...</span>
                             </div>
                         }
@@ -64,7 +66,6 @@ const Search = () => {
     const debounceFunction = debounce(function (val) {
         getSearchResult(val)
     }, 2000)
-
 
     return (
         <div className='relative'>
