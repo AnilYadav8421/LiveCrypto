@@ -43,7 +43,7 @@ const Filters = () => {
             <option value="gecko_desc">gecko desc</option>
             <option value="gecko_asc">gescko asc</option>
           </select>
-            <img className='w-[1.1rem] absolute right-0 top-1 h-auto pointer-events-none ' src={selectBtn} alt="submit" />
+          <img className='w-[1.1rem] absolute right-0 top-1 h-auto pointer-events-none ' src={selectBtn} alt="submit" />
         </label>
       </div>
 

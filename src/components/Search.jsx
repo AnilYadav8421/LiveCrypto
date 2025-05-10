@@ -2,13 +2,10 @@ import React, { useContext, useState } from 'react'
 import serachIcon from '../assets/search-icon.svg'
 import { CryptoContext } from '../context/CryptoContext';
 import { debounce } from 'lodash';
-import { data } from 'react-router-dom';
 
 const SearchInput = ({ handleSearch }) => {
     const [searchText, setSearchText] = useState("");
-    let { searchData } = useContext(CryptoContext);
-    let { coinSearch, setCoinSearch, setSearchData } = useContext(CryptoContext);
-
+    let { searchData, setCoinSearch, setSearchData } = useContext(CryptoContext);
 
     let handleInput = (e) => {
         e.preventDefault();
@@ -25,20 +22,20 @@ const SearchInput = ({ handleSearch }) => {
     const selectCoin = (coin) => {
         setCoinSearch(coin);
         setSearchText("");
-        setSearchData()
+        setSearchData([])
     }
 
     return (
         <>
             <form className='w-96 relative flex items-center ml-7 ' onSubmit={handleSubmit} onChange={handleInput} value={searchText} >
-                <input className='w-full rounded bg-gray-600 placeholder:text-gray-200 pl-2 required: outline-0 border-transparent border focus:border-cyan-300' type="text" name='search' placeholder='Search Crypto' />
+                <input className='w-full rounded bg-gray-700 placeholder:text-gray-200 pl-2 required: outline-0 border-transparent border focus:border-cyan-300' type="text" name='search' placeholder='Search Crypto' />
                 <button className='absolute right-1 cursor-pointer' type='submit'>
                     <img className='h-auto w-full' src={serachIcon} alt="search-icon" />
                 </button>
             </form>
             {
                 searchText.length > 0 ?
-                    <ul className='absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-2 bg-gray-600 bg-opacity-70 backdrop-blur-md'>
+                    <ul className='absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-1 p-2 bg-gray-800 bg-opacity-50 '>
                         {
                             searchData ? searchData.map(coin => {
                                 return <li className='flex items-center ml-4 my-2 cursor-pointer'
@@ -48,7 +45,7 @@ const SearchInput = ({ handleSearch }) => {
                                     <span>{coin.name}</span>
                                 </li>
                             }) : <div className='w-full h-full flex justify-center items-center'>
-                                <div className='w-8 h-8 border-4 border-cyan-300 rounded-full border-b-gray-600 animate-spin' role='status' />
+                                <div className='w-8 h-8 border-4 border-cyan-300 rounded-full border-b-gray-800 animate-spin' role='status' />
                                 <span className='ml-2'>Searching...</span>
                             </div>
                         }

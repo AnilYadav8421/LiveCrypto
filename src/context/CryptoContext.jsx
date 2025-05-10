@@ -10,10 +10,11 @@ export const CryptoProvider = ({children}) => {
     const [coinSearch, setCoinSearch] = useState("");
     const [currency, setCurrency] = useState('inr');
     const [sortBy, setSortBy] = useState('market_cap_desc');
+    const [page, setPage] = useState(1)
 
     const getCryptoData = async () => {
         try {
-            const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=10&page=1&sparkline=false`);
+            const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=10&page=${page}&sparkline=false`);
             const data = await response.json();
             setCryptoData(data)                     
             
@@ -35,9 +36,9 @@ export const CryptoProvider = ({children}) => {
     }
     useEffect(()=>{
         getCryptoData();
-    }, [coinSearch, currency, sortBy]);
+    }, [coinSearch, currency, sortBy, page]);
     return(
-        <CryptoContext.Provider value={{cryptoData, searchData, getSearchResult, setCoinSearch, setSearchData, currency, setCurrency, sortBy, setSortBy}}>
+        <CryptoContext.Provider value={{cryptoData, searchData, getSearchResult, setCoinSearch, setSearchData, currency, setCurrency, sortBy, setSortBy, page, setPage}}>
             {children}
         </CryptoContext.Provider>
     )
