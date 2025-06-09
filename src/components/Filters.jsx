@@ -1,54 +1,83 @@
-import React, { useContext, useRef } from 'react'
-import Search from './Search'
-import submitBtn from '../assets/submit-icon.svg'
-import selectBtn from '../assets/select-icon.svg'
-import { CryptoContext } from '../context/CryptoContext'
+import React, { useContext, useRef } from 'react';
+import Search from './Search';
+import submitBtn from '../assets/submit-icon.svg';
+import selectBtn from '../assets/select-icon.svg';
+import { CryptoContext } from '../context/CryptoContext';
 
 const Filters = () => {
-  let { setCurrency, setSortBy } = useContext(CryptoContext);
+  const { setCurrency, setSortBy } = useContext(CryptoContext);
   const currencyRef = useRef(null);
 
   const handleCurrencySubmit = (e) => {
     e.preventDefault();
-    let val = currencyRef.current.value;
+    const val = currencyRef.current.value;
     setCurrency(val);
     currencyRef.current.value = "";
-  }
+  };
 
   const handleSort = (e) => {
     e.preventDefault();
-    let val = e.target.value;
-    setSortBy(val)
-  }
+    const val = e.target.value;
+    setSortBy(val);
+  };
+
   return (
-    <div className='w-full h-12 border-2 border-gray-400 rounded-lg flex items-center justify-between relative'>
-      <Search />
-      <div className='flex mr-7'>
-        <form className='relative flex items-center mr-12' onSubmit={handleCurrencySubmit}>
-          <label htmlFor="currency" className='relative flex justify-center items-center mr-2 font-bold'>currency</label>
-          <input className='w-16 rounded bg-gray-700 pl-2 required: outline-0 border border-transparent focus:border-cyan-300 leading-4' type="text" name='currency' placeholder='inr' ref={currencyRef} />
-          <button type="submit">
-            <img className='w-full h-auto cursor-pointer' src={submitBtn} alt="submit" />
-          </button>
-        </form>
-        <label className='relative flex justify-center items-center'>
-          <span className='font-bold mr-2'>sort by: </span>
-          <select name="sortby" className='rounded bg-gray-700 text-base pl-2 pr-10 py-0.5 leading-4 focus:outline-0' onClick={handleSort} >
-            <option value="market_cap_desc">market cap desc</option>
-            <option value="market_cap_asc">market cap asc</option>
-            <option value="volume_desc">volume desc</option>
-            <option value="volume_asc">volume asc</option>
-            <option value="id_desc">id desc</option>
-            <option value="id_asc">id asc</option>
-            <option value="gecko_desc">gecko desc</option>
-            <option value="gecko_asc">gescko asc</option>
-          </select>
-          <img className='w-[1.1rem] absolute right-0 top-1 h-auto pointer-events-none ' src={selectBtn} alt="submit" />
-        </label>
+    <div className="w-full border-2 border-gray-400 rounded-lg p-4 flex flex-col gap-4 sm:flex-col md:flex-row md:items-center md:justify-between">
+      {/* Search Input */}
+      <div className="w-full md:w-1/2">
+        <Search />
       </div>
 
-    </div>
-  )
-}
+      {/* Currency & Sort Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 md:gap-8">
+        {/* Currency Input */}
+        <form
+          className="flex items-center gap-2"
+          onSubmit={handleCurrencySubmit}
+        >
+          <label htmlFor="currency" className="font-bold">Currency</label>
+          <input
+            className="w-20 rounded bg-gray-700 pl-2 outline-0 border border-transparent focus:border-cyan-300 leading-4"
+            type="text"
+            name="currency"
+            placeholder="inr"
+            ref={currencyRef}
+          />
+          <button type="submit">
+            <img
+              className="w-5 h-5 cursor-pointer"
+              src={submitBtn}
+              alt="submit"
+            />
+          </button>
+        </form>
 
-export default Filters
+        {/* Sort Select */}
+        <label className="flex items-center gap-2 relative">
+          <span className="font-bold">Sort by:</span>
+          <select
+            name="sortby"
+            className="w-32 sm:w-40 rounded bg-gray-700 text-base pl-2 pr-8 py-1 leading-4 focus:outline-0"
+            onChange={handleSort}
+          >
+            <option value="market_cap_desc">Market Cap Desc</option>
+            <option value="market_cap_asc">Market Cap Asc</option>
+            <option value="volume_desc">Volume Desc</option>
+            <option value="volume_asc">Volume Asc</option>
+            <option value="id_desc">ID Desc</option>
+            <option value="id_asc">ID Asc</option>
+            <option value="gecko_desc">Gecko Desc</option>
+            <option value="gecko_asc">Gecko Asc</option>
+          </select>
+          <img
+            className="w-4 h-4 absolute right-2 pointer-events-none"
+            src={selectBtn}
+            alt="dropdown"
+          />
+        </label>
+      </div>
+    </div>
+  );
+};
+
+export default Filters;

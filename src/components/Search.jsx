@@ -27,7 +27,7 @@ const SearchInput = ({ handleSearch }) => {
 
     return (
         <>
-            <form className='w-96 relative flex items-center ml-7 ' onSubmit={handleSubmit} onChange={handleInput} value={searchText} >
+            <form className='w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg relative flex items-center ml-0 sm:ml-4 ' onSubmit={handleSubmit} onChange={handleInput} value={searchText} >
                 <input className='w-full rounded bg-gray-700 placeholder:text-gray-200 pl-2 required: outline-0 border-transparent border focus:border-cyan-300' type="text" name='search' placeholder='Search Crypto' />
                 <button className='absolute right-1 cursor-pointer' type='submit'>
                     <img className='h-auto w-full' src={serachIcon} alt="search-icon" />
@@ -58,17 +58,17 @@ const SearchInput = ({ handleSearch }) => {
 }
 
 const Search = () => {
+  const { getSearchResult } = useContext(CryptoContext);
 
-    let { getSearchResult } = useContext(CryptoContext);
-    const debounceFunction = debounce(function (val) {
-        getSearchResult(val)
-    }, 2000)
+  const debounceFunction = debounce((val) => {
+    getSearchResult(val);
+  }, 800);
 
-    return (
-        <div className='relative'>
-            <SearchInput handleSearch={debounceFunction} />
-        </div>
-    )
-}
+  return (
+    <div className="relative w-full max-w-md px-4 sm:px-0">
+      <SearchInput handleSearch={debounceFunction} />
+    </div>
+  );
+};
 
-export default Search
+export default Search;
