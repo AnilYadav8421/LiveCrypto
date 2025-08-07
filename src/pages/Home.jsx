@@ -5,7 +5,7 @@ import Navigation from '../components/Navigation'
 
 const Home = () => {
   return (
-      <main className='w-full h-full flex flex-col content-center items-center relative text-white'>
+      <main className='w-full h-full flex flex-col content-center items-center relative text-white z-10'>
         <div className='w-screen h-screen bg-gray-950 fixed -z-10' />
         <Logo />
         <Navigation />

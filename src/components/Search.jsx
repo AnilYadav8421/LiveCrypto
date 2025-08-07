@@ -25,7 +25,7 @@ const SearchInput = ({ handleSearch }) => {
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full z-50">
             <form
                 onSubmit={handleSubmit}
                 className="flex items-center relative"
@@ -44,7 +44,7 @@ const SearchInput = ({ handleSearch }) => {
             </form>
 
             {searchText.length > 0 && (
-                <ul className="absolute z-50 mt-2 w-full max-h-80 overflow-y-auto rounded-lg bg-white/10 backdrop-blur border border-white/20 text-white shadow-lg">
+                <ul className="absolute z-50 mt-2 w-full max-h-80 overflow-y-auto rounded-lg bg-gray-700  border border-white/20 text-white shadow-lg">
                     {searchData && searchData.length > 0 ? (
                         searchData.map((coin) => (
                             <li

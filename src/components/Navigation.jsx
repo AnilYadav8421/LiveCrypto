@@ -9,7 +9,7 @@ const navItems = [
 
 const Navigation = () => {
   return (
-    <nav className="mt-24 mx-auto w-full max-w-xl px-4 py-2 flex justify-center gap-2 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-sm">
+    <nav className="mt-24 mx-auto w-full max-w-xl px-4 py-2 flex justify-center gap-2 rounded-2xl backdrop--md bg-white/5 border border-white/10 shadow-sm">
       {navItems.map(({ to, label }) => (
         <NavLink
           key={to}

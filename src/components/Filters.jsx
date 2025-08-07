@@ -24,7 +24,7 @@ const Filters = () => {
   };
 
   return (
-    <div className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-md flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="w-full bg-white/5  border border-white/10 rounded-2xl p-4 shadow-md flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       {/* 🔍 Search */}
       <div className="w-full md:w-1/2">
         <Search />

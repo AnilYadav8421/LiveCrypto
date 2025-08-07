@@ -14,7 +14,7 @@ const TableComponents = () => {
 
   return (
     <>
-      <div className="w-full mt-9 rounded-xl border border-white/10 bg-white/5 backdrop-blur overflow-x-auto shadow-md">
+      <div className="w-full mt-9 rounded-xl border border-white/10 bg-white/5 overflow-x-auto shadow-md">
         <div className="min-w-[700px]">
           <table className="w-full text-left">
             <thead className="text-sm text-gray-300 uppercase tracking-wide border-b border-white/10 bg-white/10">
