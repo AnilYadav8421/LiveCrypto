@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const CryptoContext = createContext({});
 
 // provider Component
-export const CryptoProvider = ({children}) => {
+export const CryptoProvider = ({ children }) => {
     const [cryptoData, setCryptoData] = useState([]);
     const [searchData, setSearchData] = useState();
     const [coinSearch, setCoinSearch] = useState("");
@@ -16,8 +16,8 @@ export const CryptoProvider = ({children}) => {
         try {
             const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=10&page=${page}&sparkline=false`);
             const data = await response.json();
-            setCryptoData(data)                     
-            
+            setCryptoData(data)
+
         } catch (error) {
             console.log('getCryptoData : ' + error);
         }
@@ -28,17 +28,16 @@ export const CryptoProvider = ({children}) => {
             const response = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`)
             const data = await response.json();
             setSearchData(data.coins)
-            console.log(data.coins);
-            
+
         } catch (error) {
             console.log('getSearchResult : ' + error);
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         getCryptoData();
     }, [coinSearch, currency, sortBy, page]);
-    return(
-        <CryptoContext.Provider value={{cryptoData, searchData, getSearchResult, setCoinSearch, setSearchData, currency, setCurrency, sortBy, setSortBy, page, setPage}}>
+    return (
+        <CryptoContext.Provider value={{ cryptoData, searchData, getSearchResult, setCoinSearch, setSearchData, currency, setCurrency, sortBy, setSortBy, page, setPage }}>
             {children}
         </CryptoContext.Provider>
     )

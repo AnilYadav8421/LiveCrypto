@@ -1,53 +1,80 @@
-import React, { useContext, useState } from 'react'
-import paginationArrow from '../assets/pagination-arrow.svg'
+import React, { useContext } from 'react';
+import paginationArrow from '../assets/pagination-arrow.svg';
 import { CryptoContext } from '../context/CryptoContext';
 
 const Pagination = () => {
-  // const [currentPage, setCurrentPage] = useState(1);
-  let { page, setPage } = useContext(CryptoContext);
-
-  const totalNumber = 250;
+  const { page, setPage } = useContext(CryptoContext);
+  const totalPages = 250;
 
   const next = () => {
-    if (page === totalNumber) {
-      return null;
-    } else {
-      setPage(page + 1);
-    }
-  }
+    if (page < totalPages) setPage(page + 1);
+  };
 
   const prev = () => {
-    if (page === 1) {
-      return null;
-    } else {
-      setPage(page - 1);
-    }
-  }
+    if (page > 1) setPage(page - 1);
+  };
+
   return (
-    <div className='flex items-center'>
-      <ul className='flex items-center justify-end text-sm'>
-        <li className='flex items-center'>
-          <button className='outline-0 hover:text-cyan-300 w-8' onClick={prev}>
-            <img className='w-full h-auto rotate-180' src={paginationArrow} alt="left" />
+    <div className="flex items-center justify-center sm:justify-end w-full">
+      <ul className="flex items-center gap-2 text-sm">
+        {/* Left Arrow */}
+        <li>
+          <button
+            onClick={prev}
+            disabled={page === 1}
+            className={`w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition ${page === 1 ? 'opacity-30 cursor-not-allowed' : ''
+              }`}
+          >
+            <img src={paginationArrow} alt="Previous" className="w-4 h-4 rotate-180" />
           </button>
         </li>
-        {/* <li><button className='outline-0 hover:text-cyan-300 rounded-full w-8 h-8 flex items-center justify-center text-lg'>...</button></li> */}
-        {
-          page > 1 && (
-            <li>
-              <button onClick={prev} className='outline-0 hover:text-cyan-300 rounded-full w-8 h-8 flex items-center justify-center bg-gray-700 mx-1.5'>{page - 1}</button>
-            </li>
-          )
-        }
 
-        <li><button disabled className='outline-0  rounded-full w-8 h-8 flex items-center justify-center bg-cyan-300 text-gray-800 mx-1.5'>{page}</button></li>
-        <li><button onClick={next} className='outline-0 hover:text-cyan-300 rounded-full w-8 h-8 flex items-center justify-center bg-gray-700 mx-1.5'>{page + 1}</button></li>
-        {/* <li><button>...</button></li> */}
-        {/* <li><button onClick={() => setCurrentPage(totalNumber)} className='outline-0 hover:text-cyan-300 rounded-full w-8 h-8 flex items-center justify-center bg-gray-700 mx-1.5' >{totalNumber}</button></li> */}
-        <li><button><img className='w-full h-auto' src={paginationArrow} alt="right" onClick={next} /></button></li>
+        {/* Page Numbers */}
+        {page > 1 && (
+          <li>
+            <button
+              onClick={prev}
+              className="w-8 h-8 rounded-full bg-gray-800 text-white hover:text-cyan-300 transition"
+            >
+              {page - 1}
+            </button>
+          </li>
+        )}
+
+        <li>
+          <button
+            disabled
+            className="w-8 h-8 rounded-full bg-cyan-300 text-gray-900 font-semibold"
+          >
+            {page}
+          </button>
+        </li>
+
+        {page < totalPages && (
+          <li>
+            <button
+              onClick={next}
+              className="w-8 h-8 rounded-full bg-gray-800 text-white hover:text-cyan-300 transition"
+            >
+              {page + 1}
+            </button>
+          </li>
+        )}
+
+        {/* Right Arrow */}
+        <li>
+          <button
+            onClick={next}
+            disabled={page === totalPages}
+            className={`w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition ${page === totalPages ? 'opacity-30 cursor-not-allowed' : ''
+              }`}
+          >
+            <img src={paginationArrow} alt="Next" className="w-4 h-4" />
+          </button>
+        </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;
