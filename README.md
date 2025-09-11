@@ -1,12 +1,67 @@
-# React + Vite
+# Crypto Screener
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web application for tracking and analyzing cryptocurrency data in real time. The project is built with **React.js** and **Tailwind CSS**, integrates the **CoinGecko API**, and demonstrates modern frontend practices such as **Context API state management** and **React Router navigation**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Real-time cryptocurrency data using the CoinGecko API
+* Search, sort, and filter functionality for efficient exploration
+* Currency conversion support
+* Data visualization with Recharts
+* Global state management with Context API
+* Multi-page navigation with React Router
+* Responsive design optimized for desktop and mobile devices
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Frontend:** React.js, Tailwind CSS
+* **State Management:** Context API
+* **Routing:** React Router
+* **Data Visualization:** Recharts
+* **API:** CoinGecko
+
+## Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/AnilYadav8421/crypto-screener.git
+cd crypto-screener
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm start
+```
+
+The application will be available at `http://localhost:3000/`.
+
+## Project Structure
+
+```
+src/
+│── components/     # Reusable UI components  
+│── context/        # Context API setup for global state  
+│── pages/          # Application views (Home, Details, etc.)  
+│── assets/         # Static assets (images, icons)  
+│── App.js          # Main application component  
+│── index.js        # Entry point  
+```
+
+## Future Enhancements
+
+* User authentication and personalized watchlists
+* Historical price charts with advanced filtering
+* Notification system for price alerts
+
+## Acknowledgements
+
+* [CoinGecko API](https://www.coingecko.com/en/api) for market data
+* [Recharts](https://recharts.org/) for charting
